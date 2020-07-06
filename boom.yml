@@ -1,0 +1,14 @@
+config:
+  target: 'http://localhost:3000/login'
+  phases:
+    - duration: 5
+      arrivalRate: 20
+  defaults:
+    headers:
+      x-my-service-auth: '987401838271002188298567'
+scenarios:
+  - flow:
+    - get:
+        url: "/login"
+    - get:
+        url: "/dashboard"    

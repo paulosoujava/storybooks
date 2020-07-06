@@ -1,0 +1,56 @@
+<div class="row">
+  <div class="col s12 center"><h1>DASHBOARD</h1></div>
+  <div class="col s2">
+    <div>
+      <img class="responsive-img" src="{{image}}">
+      <a href="/stories/add" class="btn-floating btn-small waves-effect waves-light red right" style="margin-top: -20px;"> 
+        <i class="fas fa-plus"></i></a>
+    </div>
+    
+    <h5>Welcome {{name}}</h5>
+    <p>Here your stories </p>
+  </div>
+  <div class="col s10">
+    {{#if stories}}
+      <table class="striped">
+        <thead>
+          <th>Title</th>
+          <th>Date</th>
+          <th>Status</th>
+          <th colspan="2">Options</th>
+        </thead>
+        <tbody>
+          {{#each stories}}
+            <tr>
+              <td><a href="/stories/edit/{{_id}}">{{title}}</a></td>
+              <td>{{formatDate createdAt 'd/m/Y -> h:mm:ss a'}}</td>
+              <td><span class="class dash-status">{{status}}</span></td>
+              <td>
+                <form action="/stories/{{_id}}" method="POST" id="delete-form">
+                  <input type="hidden" name="_method" value="DELETE" />
+                    <button type="submit" class="btn-floating btn-small  red">
+                    <i class="fas fa-trash" aria-hidden="true"></i>
+                    </button>
+                </form>
+                
+              </td>
+              <td>
+                <a  href="/stories/edit/{{_id}}" class="btn-floating btn-small  green">
+              <i class="fas fa-edit" aria-hidden="true"></i></a>
+
+              </td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    {{else}}
+    
+       
+         <blockquote>
+            <p>you have not created any sotries</p>
+         </blockquote>
+       
+      
+    {{/if}}
+  </div>
+</div>
